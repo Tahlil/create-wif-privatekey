@@ -15,5 +15,10 @@
   "bugs": {
     "url": "https://github.com/Tahlil/create-wif-privatekey/issues"
   },
-  "homepage": "https://github.com/Tahlil/create-wif-privatekey#readme"
+  "homepage": "https://github.com/Tahlil/create-wif-privatekey#readme",
+  "dependencies": {
+    "bs58": "^5.0.0",
+    "crypto": "^1.0.1",
+    "dotenv": "^16.1.4"
+  }
 }
