@@ -20,5 +20,8 @@
     "bs58": "^5.0.0",
     "crypto": "^1.0.1",
     "dotenv": "^16.1.4"
+  },
+  "devDependencies": {
+    "@types/node": "^20.3.1"
   }
 }
