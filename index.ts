@@ -1,7 +1,6 @@
-import dotenv from "dotenv";
+import * as dotenv from "dotenv";
 
-import * as litecore from "litecore-lib";
-
+import { PrivateKey, Networks } from 'litecore-lib';
 import { createHash } from "crypto";
 import * as bs58 from "bs58";
 
@@ -39,7 +38,12 @@ function createLitecoinAddress(
   privateKey: string,
   testnet: boolean = false
 ): string {
-    
+
+    const privateKeyObj = new PrivateKey(privateKey);
+    const network = testnet ? Networks.testnet : Networks.livenet;
+    const address = privateKeyObj.toAddress(network);
+    return address.toString();
+
 }
 
 // Example usage
