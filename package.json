@@ -19,9 +19,11 @@
   "dependencies": {
     "bs58": "^5.0.0",
     "crypto": "^1.0.1",
-    "dotenv": "^16.1.4"
+    "dotenv": "^16.1.4",
+    "litecore-lib": "^0.13.22"
   },
   "devDependencies": {
+    "@types/bitcore-lib": "^0.15.3",
     "@types/node": "^20.3.1"
   }
 }
