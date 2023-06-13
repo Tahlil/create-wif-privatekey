@@ -5,8 +5,8 @@ dotenv.config();
 import { createHash } from 'crypto';
 import * as bs58 from 'bs58';
 
-function convertPrivateKeyToWIF(privateKey: string): string {
-  const prefix = Buffer.from([0x80]);
+function convertPrivateKeyToWIFLitecoin(privateKey: string, testnet: boolean): string {
+  const prefix = Buffer.from([testnet ? 0xef : 0xb0]);
   const suffix = Buffer.from([0x01]);
 
   // Step 1: Add prefix and suffix
@@ -28,5 +28,5 @@ function convertPrivateKeyToWIF(privateKey: string): string {
 
 // Example usage
 const privateKey: string = process.env.PRIVATE_KEY + "";
-const wifPrivateKey = convertPrivateKeyToWIF(privateKey);
+const wifPrivateKey = convertPrivateKeyToWIFLitecoin(privateKey, true);
 console.log('WIF Private Key:', wifPrivateKey);
