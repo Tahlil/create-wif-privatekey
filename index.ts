@@ -1,16 +1,25 @@
 import * as dotenv from "dotenv";
 
-import { PrivateKey, Networks } from 'litecore-lib';
 import { createHash } from "crypto";
 import * as bs58 from "bs58";
 
 dotenv.config();
 
-function convertPrivateKeyToWIFLitecoin(
+
+const mainnetPrefix = {
+  "BTC": 0x1,
+  "LTC":  0xb0,
+  "BCH":  0x1,
+  "DOGE":  0x9e,
+}
+
+// convertTOWIF
+function convertPrivateKeyToWIFBTCBasedChain(
   privateKey: string,
-  testnet: boolean
+  testnet: boolean,
+  chainType: "BTC" | "LTC" | "BCH" | "DOGE"
 ): string {
-  const prefix = Buffer.from([testnet ? 0xef : 0xb0]);
+  const prefix = Buffer.from([testnet ? 0xef : mainnetPrefix[chainType]]);
   const suffix = Buffer.from([0x01]);
 
   // Step 1: Add prefix and suffix
@@ -34,27 +43,12 @@ function convertPrivateKeyToWIFLitecoin(
   return wifPrivateKey;
 }
 
-function createLitecoinAddress(
-  privateKey: string,
-  testnet: boolean = false
-): string {
 
-    const privateKeyObj = new PrivateKey(privateKey);
-    const network = testnet ? Networks.testnet : Networks.livenet;
-    const address = privateKeyObj.toAddress(network);
-    return address.toString();
-
-}
 
 // Example usage
 const privateKey: string = process.env.PRIVATE_KEY + "";
-// Create LITECOIN private key WIF format
-const wifPrivateKey = convertPrivateKeyToWIFLitecoin(privateKey, true);
+
+const wifPrivateKey = convertPrivateKeyToWIFBTCBasedChain(privateKey, false, "DOGE");
 console.log("WIF Private Key:", wifPrivateKey);
 
-// Create LITECOIN address
-const testnetAddress = createLitecoinAddress(privateKey, true);
-const mainnetAddress = createLitecoinAddress(privateKey, false);
 
-console.log("Litecoin Testnet Address:", testnetAddress);
-console.log("Litecoin Mainnet Address:", mainnetAddress);
