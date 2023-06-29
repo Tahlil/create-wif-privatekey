@@ -7,9 +7,9 @@ dotenv.config();
 
 
 const mainnetPrefix = {
-  "BTC": 0x1,
+  "BTC": 0x80,
   "LTC":  0xb0,
-  "BCH":  0x1,
+  "BCH":  0x80,
   "DOGE":  0x9e,
 }
 
@@ -48,7 +48,10 @@ function convertPrivateKeyToWIFBTCBasedChain(
 // Example usage
 const privateKey: string = process.env.PRIVATE_KEY + "";
 
-const wifPrivateKey = convertPrivateKeyToWIFBTCBasedChain(privateKey, false, "DOGE");
+// const wifPrivateKey = convertPrivateKeyToWIFBTCBasedChain(privateKey, false, "DOGE");
+// console.log("WIF Private Key:", wifPrivateKey);
+
+const wifPrivateKey = convertPrivateKeyToWIFBTCBasedChain(privateKey, false, "BCH");
 console.log("WIF Private Key:", wifPrivateKey);
 
 
